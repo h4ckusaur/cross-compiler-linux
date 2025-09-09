@@ -1,0 +1,11 @@
+FROM {LINUX_IMAGE}
+
+# Install build tools
+RUN apt-get update && apt-get install -y build-essential gcc && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /workspace
+
+COPY . /workspace
+
+# Default command: compile the provided C file
+CMD ["sh", "-c", "gcc -o output output.c && echo 'Compiled as output'"]
